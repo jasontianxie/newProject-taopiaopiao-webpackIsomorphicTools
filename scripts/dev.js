@@ -14,9 +14,9 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(require("webpack-hot-middleware")(compiler));
 // Serve the files on port 3000.
-app.listen(3000, function () {
+app.listen(3003, function () {
   console.log('Example app listening on port 3000!\n');
-  opn('127.0.0.1:3000',{app: 'chrome'});
+  // opn('127.0.0.1:3000',{app: 'chrome'});
 });
 // const watching = compiler.watch({
 //   watch: true

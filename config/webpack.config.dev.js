@@ -2,19 +2,25 @@ const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
     entry:{
-        app:path.resolve(__dirname,'../entry/index.js'),
-        vendor:path.resolve(__dirname,'../entry/vendor.js'),
-        hotClient:'webpack-hot-middleware/client',
+        app:['eventsource-polyfill',path.resolve(__dirname,'../entry/index.js'),'webpack-hot-middleware/client?reload=true'],
+        vendor:['eventsource-polyfill',path.resolve(__dirname,'../entry/vendor.js'),'webpack-hot-middleware/client?reload=true'],
+        // polyfill:'eventsource-polyfill',
     },
+    // entry:[
+    //   'event-source-polyfill',
+    //   'webpack-hot-middleware/client?reload=true',
+    //   path.resolve(__dirname,'../entry/index.js'),
+    //   path.resolve(__dirname,'../entry/vendor.js')
+    // ],
     output:{
         path:path.resolve(__dirname,'../public'),
         filename:'[name].[hash].js',
         // filename:'[name].js',
-        publicPath:'127.0.0.1:3000/public/'
+        publicPath:'/'
     },
     module: {
         rules: [
@@ -38,6 +44,24 @@ module.exports = {
       new htmlWebpackPlugin({
         filename: 'index.html',
         template: 'template.html'
-      })
+      }),
+      new BrowserSyncPlugin(
+        // BrowserSync options 
+        {
+          // browse to http://localhost:3000/ during development 
+          host: 'http://127.0.0.1',
+          port: 3100,
+          // proxy the Webpack Dev Server endpoint 
+          // (which should be serving on http://localhost:3100/) 
+          // through BrowserSync 
+          proxy: 'http://127.0.0.1:3003/'
+        },
+        // plugin options 
+        {
+          // prevent BrowserSync from reloading the page 
+          // and let Webpack Dev Server take care of this 
+          reload: false
+        }
+      )
     ]
 }

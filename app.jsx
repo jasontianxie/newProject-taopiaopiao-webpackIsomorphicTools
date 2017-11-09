@@ -6,7 +6,7 @@ class App extends React.Component{
     }
     render(){
         return (
-            <div>this is a welcome page11312312333</div>
+            <div>this is a welcome page wwwddd123</div>
         )
     }
 }
