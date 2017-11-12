@@ -1,8 +1,10 @@
-import React from 'react';
+import * as React from 'react';
+// import React from 'react';
+// const React = require('react');
 
 class App extends React.Component{
-    constructor(){
-        super()
+    constructor(props:any){
+        super(props)
     }
     render(){
         return (

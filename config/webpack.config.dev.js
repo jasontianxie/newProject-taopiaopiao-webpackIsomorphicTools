@@ -24,16 +24,18 @@ module.exports = {
     },
     module: {
         rules: [
-          {
-            test: /\.jsx?$/,
-            exclude: /node_modules/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['env','react']
-              }
-            }
-          }
+          // {
+          //   test: /\.jsx?$/,
+          //   exclude: /node_modules/,
+          //   use: {
+          //     loader: 'babel-loader',
+          //     options: {
+          //       presets: ['env','react']
+          //     }
+          //   }
+          // },
+          { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+          { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
         ]
       },
     plugins:[
