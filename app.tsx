@@ -2,15 +2,10 @@ import * as React from 'react';
 // import React from 'react';
 // const React = require('react');
 
-class App extends React.Component{
-    constructor(props:any){
-        super(props)
-    }
+export class App extends React.Component<any,any>{
     render(){
         return (
-            <div>this is a welcome page wwwddd123</div>
+            <div>this is a welcome page www123</div>
         )
     }
 }
-
-export {App};

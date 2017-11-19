@@ -6,15 +6,15 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
     entry:{
-        app:['eventsource-polyfill',path.resolve(__dirname,'../entry/index.js'),'webpack-hot-middleware/client?reload=true'],
+        app:['eventsource-polyfill',path.resolve(__dirname,'../entry/index.tsx'),'webpack-hot-middleware/client?reload=true'],
         vendor:['eventsource-polyfill',path.resolve(__dirname,'../entry/vendor.js'),'webpack-hot-middleware/client?reload=true'],
         // polyfill:'eventsource-polyfill',
     },
     // entry:[
     //   'event-source-polyfill',
     //   'webpack-hot-middleware/client?reload=true',
-    //   path.resolve(__dirname,'../entry/index.js'),
-    //   path.resolve(__dirname,'../entry/vendor.js')
+    //   path.resolve(__dirname,'../entry/index.tsx'),
+    //   // path.resolve(__dirname,'../entry/vendor.js')
     // ],
     output:{
         path:path.resolve(__dirname,'../public'),
@@ -22,6 +22,10 @@ module.exports = {
         // filename:'[name].js',
         publicPath:'/'
     },
+    resolve: {
+      // Add '.ts' and '.tsx' as resolvable extensions.
+      extensions: [".ts", ".tsx", ".js", ".json"]
+  },
     module: {
         rules: [
           // {

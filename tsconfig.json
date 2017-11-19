@@ -1,18 +1,17 @@
 {
     "compilerOptions": {
-        "module": "system",
+        "module": "commonjs",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "outFile": "../../built/local/tsc.js",
         "sourceMap": true,
-        "jsx":"preserve"
+        "jsx":"react"
     },
     "files": [
         "./app.tsx"
     ],
     "include": [
-        "src/**/*"
+        "./src/**/*"
     ],
     "exclude": [
         "node_modules",
