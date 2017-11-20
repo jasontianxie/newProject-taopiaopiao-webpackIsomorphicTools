@@ -3,6 +3,12 @@ const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
 
 module.exports = {
     entry:{
@@ -39,10 +45,23 @@ module.exports = {
           //   }
           // },
           { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
-          { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+          { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+          {
+            test: /\.scss$/,
+            use: extractSass.extract({
+                use: [{
+                    loader: "css-loader"
+                }, {
+                    loader: "sass-loader"
+                }],
+                // use style-loader in development 
+                fallback: "style-loader"
+            })
+          }
         ]
       },
     plugins:[
+      extractSass,
       new CleanWebpackPlugin(['public'],{root:path.resolve(__dirname,'..')}),
       new webpack.HotModuleReplacementPlugin(),
       // Use NoErrorsPlugin for webpack 1.x

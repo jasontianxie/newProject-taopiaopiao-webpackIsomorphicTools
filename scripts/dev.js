@@ -9,6 +9,9 @@ const app = express();
 const compiler = webpack(webpackDevConfig);
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
+
+process.env.NODE_ENV = 'development'; 
+
 app.use(webpackDevMiddleware(compiler, {
   publicPath: webpackDevConfig.output.publicPath
 }));
