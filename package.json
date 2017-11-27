@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jasontianxie/newProject-taopiaopiao#readme",
   "devDependencies": {
+    "@types/react-css-modules": "^4.6.0",
     "acorn-dynamic-import": "^2.0.2",
     "autoprefixer": "^7.1.6",
     "awesome-typescript-loader": "^3.3.0",
@@ -40,9 +41,11 @@
     "json-loader": "^0.5.7",
     "loader-runner": "^2.3.0",
     "node-sass": "^4.6.1",
-    "postcss-loader": "^2.0.8",
+    "postcss-loader": "^2.0.9",
+    "postcss-modules": "^1.1.0",
     "pretty-error": "^2.1.1",
     "react": "^16.0.0",
+    "react-css-modules": "^4.7.1",
     "react-dom": "^16.0.0",
     "react-redux": "^5.0.6",
     "react-router": "^2.8.1",
@@ -61,6 +64,7 @@
   },
   "dependencies": {
     "@types/react": "^16.0.22",
+    "@types/react-css-modules": "^4.6.0",
     "@types/react-dom": "^16.0.3",
     "opn": "^5.1.0",
     "react": "^16.1.0",

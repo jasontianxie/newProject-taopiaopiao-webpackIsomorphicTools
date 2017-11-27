@@ -1,19 +1,43 @@
+///<reference path="./index.d.ts" />
 import * as React from 'react';
-import {TabPane} from '../tabPane/index';
+import { TabPane } from '../tabPane/index';
+// const style = require('./index.scss.json') ;
+// import style from './index.scss.json';
+import * as CSSModules from 'react-css-modules';
+const  style =require('./index.scss') ;
+// import style from './index.scss';
 
-export class Tabs extends React.Component<any,any>{
+class Tabs extends React.Component<any, any>{
+    constructor(props:any){
+        super(props)
+        this.state = {
+            tabPaneToShow:0
+        }
+    }
+    tabPaneClickToShow(tabIndex:number):void{
+        this.setState({...this.state,tabPaneToShow:tabIndex});
+    }
     static tabPane = TabPane
-    render(){
+    render() {
         return (
             <div>
                 <ul>
-                    {React.Children.map(this.props.children,(child: React.ReactElement<any>,index)=>{
+                    {React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
                         return (
-                            <li>{child.props.title}</li>
+                            <li styleName='title' onClick={()=>this.tabPaneClickToShow(index)}>{child.props.title}</li>
                         )
                     })}
                 </ul>
+                {
+                    React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
+                        return (
+                            <div style={{display:(this.state.tabPaneToShow === index?'block':'none')}}>{child.props.children}</div>
+                        )
+                    })
+                }
             </div>
         )
     }
 }
+
+export default CSSModules(Tabs,style);
