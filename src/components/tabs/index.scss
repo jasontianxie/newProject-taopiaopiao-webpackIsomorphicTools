@@ -1,3 +1,10 @@
+@import '../../commonStyle/function.scss';
+.titleWrap{
+    display: flex;
+}
 .title{
-    color: red;
+    color: green;
+    font-size: rem(40);
+    flex-grow: 1;
+    text-align: center;
 }

@@ -6,6 +6,6 @@ module.exports = {
                 "last 2 versions"
             ]
         }),
-        require('postcss-modules')()
+        // require('postcss-modules')()
     ]
 }

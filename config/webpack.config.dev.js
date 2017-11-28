@@ -31,7 +31,10 @@ module.exports = {
   },
   resolve: {
     // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json","scss"]
+    extensions: [".ts", ".tsx", ".js", ".json","scss"],
+    alias:{
+      root$:path.resolve(__dirname, '..')
+    }
   },
   module: {
     rules: [
@@ -49,29 +52,46 @@ module.exports = {
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.scss$/,
-        use: extractSass.extract({
-          use: [{
-            loader: "css-loader",
-            options:{
-              modules:true,
-              importLoaders:1,
-              localIdentName:'[name]__[local]___[hash:base64:5]'
-            }
-          },
+        // use: extractSass.extract({
+        //   use: [{
+        //     loader: "css-loader",
+        //     options:{
+        //       modules:true,
+        //       importLoaders:2,
+        //       localIdentName:'[name]__[local]___[hash:base64:5]'
+        //     }
+        //   },
+        //   {
+        //     loader:"postcss-loader"
+        //   },
+        //   {
+        //     loader: "sass-loader"
+        //   }],
+        //   // use style-loader in development 
+        //   fallback: {loader:"style-loader",options:{hmr:true}}
+        // })
+        use:[
+          {loader:"style-loader",options:{hmr:true}},
           {
-            loader:"postcss-loader"
-          },
-          {
-            loader: "sass-loader"
-          }],
-          // use style-loader in development 
-          fallback: "style-loader"
-        })
+                loader: "css-loader",
+                options:{
+                  modules:true,
+                  importLoaders:2,
+                  localIdentName:'[name]__[local]___[hash:base64:5]'
+                }
+              },
+              {
+                loader:"postcss-loader"
+              },
+              {
+                loader: "sass-loader"
+              }
+        ]
       }
     ]
   },
   plugins: [
-    extractSass,
+    // extractSass,
     new CleanWebpackPlugin(['public'], { root: path.resolve(__dirname, '..') }),
     new webpack.HotModuleReplacementPlugin(),
     // Use NoErrorsPlugin for webpack 1.x

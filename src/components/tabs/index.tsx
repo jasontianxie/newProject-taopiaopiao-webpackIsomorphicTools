@@ -4,8 +4,9 @@ import { TabPane } from '../tabPane/index';
 // const style = require('./index.scss.json') ;
 // import style from './index.scss.json';
 import * as CSSModules from 'react-css-modules';
-const  style =require('./index.scss') ;
-// import style from './index.scss';
+// let style =require('./index.scss') ;
+import * as style from './index.scss';
+
 
 class Tabs extends React.Component<any, any>{
     constructor(props:any){
@@ -19,9 +20,10 @@ class Tabs extends React.Component<any, any>{
     }
     static tabPane = TabPane
     render() {
+        console.log(this.props)
         return (
             <div>
-                <ul>
+                <ul styleName="titleWrap">
                     {React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
                         return (
                             <li styleName='title' onClick={()=>this.tabPaneClickToShow(index)}>{child.props.title}</li>
