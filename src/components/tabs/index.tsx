@@ -1,9 +1,10 @@
 ///<reference path="./index.d.ts" />
 import * as React from 'react';
-import { TabPane } from '../tabPane/index';
+import { TabPane } from 'src/components/tabPane/index';
 // const style = require('./index.scss.json') ;
 // import style from './index.scss.json';
 import * as CSSModules from 'react-css-modules';
+import * as classNames from 'classnames';
 // let style =require('./index.scss') ;
 import * as style from './index.scss';
 
@@ -20,13 +21,15 @@ class Tabs extends React.Component<any, any>{
     }
     static tabPane = TabPane
     render() {
-        console.log(this.props)
+        console.log(this.props)//这里可以看到react-css-modules中class转换后的映射
+        const {tabPaneToShow} = this.state;
+        const {children} = this.props;
         return (
             <div>
                 <ul styleName="titleWrap">
                     {React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
                         return (
-                            <li styleName='title' onClick={()=>this.tabPaneClickToShow(index)}>{child.props.title}</li>
+                            <li styleName={classNames('title',{'titleChecked':tabPaneToShow === index})} onClick={()=>this.tabPaneClickToShow(index)}>{child.props.title}</li>
                         )
                     })}
                 </ul>
@@ -42,4 +45,4 @@ class Tabs extends React.Component<any, any>{
     }
 }
 
-export default CSSModules(Tabs,style);
+export default CSSModules(Tabs,style,{allowMultiple:true});

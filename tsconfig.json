@@ -6,7 +6,8 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "jsx":"react",
-        // "@root/*": ["../*"]
+        "baseUrl": ".",
+        "paths":{"src": ["src"]}
     },
     "files": [
         "./app.tsx"

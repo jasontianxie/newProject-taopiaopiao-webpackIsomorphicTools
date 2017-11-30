@@ -33,7 +33,7 @@ module.exports = {
     // Add '.ts' and '.tsx' as resolvable extensions.
     extensions: [".ts", ".tsx", ".js", ".json","scss"],
     alias:{
-      root$:path.resolve(__dirname, '..')
+      src:path.resolve(__dirname, '../src')
     }
   },
   module: {

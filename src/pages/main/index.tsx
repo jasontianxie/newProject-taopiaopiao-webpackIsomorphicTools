@@ -9,7 +9,7 @@ const TabPane = Tabs.tabPane;
 export class App extends React.Component<any,any>{
     render(){
         return (
-            <div>
+            <div >
                 <Tabs>
                     <TabPane title="first">content first</TabPane>
                     <TabPane title="second">content second</TabPane>

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jasontianxie/newProject-taopiaopiao#readme",
   "devDependencies": {
+    "@types/classnames": "^2.2.3",
     "@types/react-css-modules": "^4.6.0",
     "acorn-dynamic-import": "^2.0.2",
     "autoprefixer": "^7.1.6",
