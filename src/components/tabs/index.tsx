@@ -1,6 +1,6 @@
 ///<reference path="./index.d.ts" />
 import * as React from 'react';
-import { TabPane } from 'src/components/tabPane/index';
+import {TabPane} from 'src/components/tabPane/index';
 // const style = require('./index.scss.json') ;
 // import style from './index.scss.json';
 import * as CSSModules from 'react-css-modules';
@@ -37,6 +37,7 @@ class Tabs extends React.Component<any, any>{
                     React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
                         return (
                             <div style={{display:(this.state.tabPaneToShow === index?'block':'none')}}>{child.props.children}</div>
+                            // <TabPane show={tabPaneToShow === index?"showBlock":"hiddenBlock"}>{child.props.children}</TabPane>
                         )
                     })
                 }

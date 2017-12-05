@@ -21,6 +21,7 @@
     "@types/classnames": "^2.2.3",
     "@types/react-css-modules": "^4.6.0",
     "acorn-dynamic-import": "^2.0.2",
+    "antd": "^3.0.0",
     "autoprefixer": "^7.1.6",
     "awesome-typescript-loader": "^3.3.0",
     "babel-core": "^6.26.0",

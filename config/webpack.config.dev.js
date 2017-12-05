@@ -51,7 +51,29 @@ module.exports = {
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
+        test:/\.css$/,use:[
+          {loader:"style-loader"},
+          {
+                loader: "css-loader",
+              }
+        ]
+      },
+      {
+        test:/\.library.scss$/,
+        use:[
+          {loader:"style-loader"},
+          {loader: "css-loader"},
+          {
+            loader:"postcss-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      },
+      {
         test: /\.scss$/,
+        exclude:/\.library.scss$/,
         // use: extractSass.extract({
         //   use: [{
         //     loader: "css-loader",
