@@ -15,15 +15,19 @@ export class App extends React.Component<any,any>{
             <div >
                 <Tabs>
                     <TabPane title="first">
-                        content first
+                        {/* content first */}
+                        <div>
+                        <Carousel autoplay>
+                            <div><img src={require('src/images/1.jpg')} alt="no pic"/></div>
+                            <div><img src={require('src/images/2.jpg')} alt="no pic"/></div>
+                            <div><img src={require('src/images/3.jpg')} alt="no pic"/></div>
+                            <div><img src={require('src/images/4.jpg')} alt="no pic"/></div>
+                            <div><img src={require('src/images/5.jpg')} alt="no pic"/></div>
+                        </Carousel>
+                        </div>
                     </TabPane>
                     <TabPane title="second">
-                        <Carousel autoplay>
-                            <div><h3>1</h3></div>
-                            <div><h3>2</h3></div>
-                            <div><h3>3</h3></div>
-                            <div><h3>4</h3></div>
-                        </Carousel>
+                        content second
                     </TabPane>
                     <TabPane title="third">content third</TabPane>
                 </Tabs>

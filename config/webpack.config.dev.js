@@ -109,6 +109,10 @@ module.exports = {
                 loader: "sass-loader"
               }
         ]
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use:[{loader:'url-loader',options:{limit:40000}}]
       }
     ]
   },

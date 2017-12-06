@@ -36,8 +36,8 @@ class Tabs extends React.Component<any, any>{
                 {
                     React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
                         return (
-                            <div style={{display:(this.state.tabPaneToShow === index?'block':'none')}}>{child.props.children}</div>
-                            // <TabPane show={tabPaneToShow === index?"showBlock":"hiddenBlock"}>{child.props.children}</TabPane>
+                            <div key={Math.random()} style={{display:(this.state.tabPaneToShow === index?'block':'none')}}>{child.props.children}</div>
+                            // 上面的div如果不加key，则在从display：none切换回来的时候，carousel将不会显示。
                         )
                     })
                 }
