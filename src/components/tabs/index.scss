@@ -1,7 +1,12 @@
 @import 'src/commonStyle/function.scss';
+.tabWrap{
+    display: flex;
+    flex-direction: column;
+    height: 100%
+}
 .titleWrap{
     display: flex;
-    margin: 0;
+    margin-bottom: 2px;
 }
 .title{
     color: green;
@@ -16,4 +21,8 @@
 .titleChecked{
     color: red;
     border-bottom: solid 3px red;
+}
+.tabContent{
+    flex: auto;
+    overflow: auto;
 }
