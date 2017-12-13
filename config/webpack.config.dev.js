@@ -113,6 +113,10 @@ module.exports = {
       {
         test: /\.(png|jpg)$/,
         use:[{loader:'url-loader',options:{limit:40000}}]
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader'
       }
     ]
   },

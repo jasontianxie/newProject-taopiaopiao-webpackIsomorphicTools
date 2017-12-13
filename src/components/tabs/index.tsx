@@ -7,7 +7,12 @@ import * as CSSModules from 'react-css-modules';
 import * as classNames from 'classnames';
 // let style =require('./index.scss') ;
 import * as style from './index.scss';
-
+// import svgObj from 'src/svgs/set.svg';
+// import  'src/svgs/set.svg';
+// import  'src/svgs/form.svg';
+// import  'src/svgs/Category.svg';
+// const svgName = ["#form","#Category","#set"];
+import svgName from 'src/svgs/dynamicRequireSVG.js';
 
 class Tabs extends React.Component<any, any>{
     constructor(props:any){
@@ -29,7 +34,8 @@ class Tabs extends React.Component<any, any>{
                 <ul styleName="titleWrap">
                     {React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
                         return (
-                            <li styleName={classNames('title',{'titleChecked':tabPaneToShow === index})} onClick={()=>this.tabPaneClickToShow(index)}>{child.props.title}</li>
+                            <li styleName={classNames('title',{'titleChecked':tabPaneToShow === index})} onClick={()=>this.tabPaneClickToShow(index)}>	
+                            <svg styleName="svgScale"><use xlinkHref={`#${svgName[index]}`}/></svg>{child.props.title}</li>
                         )
                     })}
                 </ul>

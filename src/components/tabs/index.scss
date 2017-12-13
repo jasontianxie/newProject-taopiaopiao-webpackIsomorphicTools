@@ -9,6 +9,9 @@
     margin-bottom: 2px;
 }
 .title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: green;
     font-size: rem(40);
     flex: 1 1 1px;
@@ -25,4 +28,10 @@
 .tabContent{
     flex: auto;
     overflow: auto;
+}
+.svgScale{
+    width: rem(30);
+    height: rem(30);
+    fill:blue;
+    margin-right:rem(5) ;
 }
