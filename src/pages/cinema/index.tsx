@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as CSSModules from 'react-css-modules';
 import * as style from './index.scss';
+import { hashHistory } from 'react-router';
 
 
 class Cinema extends React.Component<any, any>{
@@ -11,7 +12,7 @@ class Cinema extends React.Component<any, any>{
                     this is the content
                 </div>
                 <div styleName="mainBottom">
-                    <div>主页</div>
+                    <div onClick={()=>hashHistory.push('/')}>主页</div>
                     <div style={{color:'red'}}>影院</div>
                 </div>
             </div>

@@ -20,7 +20,7 @@
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/react-css-modules": "^4.6.0",
-    "@types/react-router": "^4.0.19",
+    "@types/react-router": "^3.0.5",
     "acorn-dynamic-import": "^2.0.2",
     "antd": "^3.0.0",
     "autoprefixer": "^7.1.6",

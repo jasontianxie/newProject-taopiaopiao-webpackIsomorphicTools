@@ -8,6 +8,7 @@ import 'antd/lib/carousel/style/css';
 import './index.library.scss';
 import * as CSSModules from 'react-css-modules';
 import * as style from './index.scss';
+import { hashHistory } from 'react-router';
 
 const movieOnlineData = [
     {
@@ -75,7 +76,7 @@ class App extends React.Component<any, any>{
                 </div>
                 <div styleName="mainBottom">
                     <div style={{color:'red'}}>主页</div>
-                    <div>影院</div>
+                    <div onClick={()=>hashHistory.push('/cinema')}>影院</div>
                 </div>
             </div>
         )
