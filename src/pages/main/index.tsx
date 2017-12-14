@@ -74,7 +74,7 @@ class App extends React.Component<any, any>{
                     </Tabs>
                 </div>
                 <div styleName="mainBottom">
-                    <div>主页</div>
+                    <div style={{color:'red'}}>主页</div>
                     <div>影院</div>
                 </div>
             </div>

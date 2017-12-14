@@ -4,7 +4,9 @@ import * as ReactDom from 'react-dom';
 // const ReactDom = require('react');
 import App from '../src/pages/main';
 import 'src/commonStyle/normalize.library.scss';
+import { Router, hashHistory } from 'react-router';
+import {routes} from '../routes/index.js';
 
 ReactDom.render(
-    <App/>,document.getElementById('root')
+    <Router history={hashHistory} routes={routes}/>,document.getElementById('root')
 )
