@@ -1,4 +1,4 @@
-///<reference path="./index.d.ts" />
+///<reference path="../../../commonDeclare/index.d.ts" />
 import * as React from 'react';
 import {TabPane} from 'src/components/tabPane/index';
 // const style = require('./index.scss.json') ;

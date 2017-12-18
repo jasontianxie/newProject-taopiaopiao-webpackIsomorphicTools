@@ -1,4 +1,4 @@
-///<reference path="./index.d.ts" />
+///<reference path="../commonDeclare/index.d.ts" />
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 // const React = require('react');
@@ -9,7 +9,7 @@ import { Router, hashHistory } from 'react-router';
 import routes from '../routes/index.js';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import * as rootReducer from 'src/reduxReducer/combineReducer';
+import rootReducer from 'src/reduxReducer/combineReducer.js';
 
 let store = createStore(rootReducer);
 
