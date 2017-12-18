@@ -1,0 +1,22 @@
+@import 'src/commonStyle/function.scss';
+.wrap{
+    width: 100%;
+    padding:rem(30);
+    border-bottom:solid 1px #eee;
+}
+.storeName{
+    font-weight: bold;
+    font-size: rem(40);
+}
+.storeAddress{
+    color: #8a869e;
+    font-size: rem(30);
+}
+.operation{
+    color: red;
+    font-size: rem(20);
+}
+.discount{
+    color: #8a869e;
+    font-size: rem(30);
+}
