@@ -14,5 +14,8 @@ import rootReducer from 'src/reduxReducer/combineReducer.js';
 let store = createStore(rootReducer);
 
 ReactDom.render(
-    <Router history={hashHistory} routes={routes}/>,document.getElementById('root')
+    <Provider store={store}>
+        <Router history={hashHistory} routes={routes}/>
+    </Provider>
+    ,document.getElementById('root')
 )

@@ -9,6 +9,7 @@ import './index.library.scss';
 import * as CSSModules from 'react-css-modules';
 import * as style from './index.scss';
 import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
 
 const movieOnlineData = [
     {
@@ -82,4 +83,26 @@ class App extends React.Component<any, any>{
         )
     }
 }
-export default CSSModules(App,style,{allowMultiple:true});
+
+const mapStateToProps = (state:any) => {
+    return {
+      todos: state.main
+    }
+  }
+
+  const mapDispatchToProps = (
+    dispatch:any
+  ) => {
+    return {
+      onClick: () => {
+        dispatch({
+          type: 'GET_init_data'
+        });
+      }
+    };
+  }
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CSSModules(App,style,{allowMultiple:true}));
