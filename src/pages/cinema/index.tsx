@@ -32,7 +32,7 @@ class Cinema extends React.Component<any, any>{
 
 const mapStateToProps = (state:any) => {
     return {
-        price: state.stores
+        price: state.get('stores')
     }
   }
 

@@ -60,9 +60,9 @@ class App extends React.Component<any, any>{
     render() {
         // console.log(this.props.main);
         const {movieOnlineData,changeStore} = this.props;
-        console.log(movieOnlineData);
-        console.log(movieOnlineData.get('isFetching'));
-        console.log(movieOnlineData.get('data').toJS());
+        // console.log(movieOnlineData);
+        // console.log(movieOnlineData.get('isFetching'));
+        // console.log(movieOnlineData.get('data').toJS());
         return (
             <div styleName="mainWrap">
                 <div styleName="mainContent">

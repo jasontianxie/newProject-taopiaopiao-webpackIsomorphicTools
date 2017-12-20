@@ -1,3 +1,4 @@
+import {fromJS} from 'immutable';
 const defaultState:number = 5;
 const reducer:any = (state = defaultState, action:any) => {
     switch (action.type) {
