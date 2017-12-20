@@ -10,6 +10,7 @@ interface storeInfo {
 }
 interface storeListProps {
     storeInfo:storeInfo;
+    price:any
 }
 
 class StoreList extends React.Component<storeListProps, any>{
@@ -17,7 +18,7 @@ class StoreList extends React.Component<storeListProps, any>{
         const {name,address,operation,discount} = this.props.storeInfo;
         return (
             <div styleName="wrap">
-                <div styleName="storeName">{name}</div>
+                <div styleName="storeName">{name}{this.props.price}</div>
                 <div styleName="storeAddress">{address}</div>
                 <div styleName="operation">{operation}</div>
                 <div styleName="discount">{discount}</div>

@@ -3,6 +3,7 @@ import * as CSSModules from 'react-css-modules';
 import * as style from './index.scss';
 import StoreList from 'src/components/storeList/index';
 import { hashHistory } from 'react-router';
+import { connect } from 'react-redux';
 
 const stores = [
     { name: "长江一店", address: "huangpujiang shanghai china", operation: "return", discount: "there is no discount" },
@@ -17,7 +18,7 @@ class Cinema extends React.Component<any, any>{
             <div styleName="mainWrap">
                 <div styleName="mainContent">
                     {stores.map((item,index,arr)=>{
-                        return <StoreList storeInfo={item} key={index}/>
+                        return <StoreList storeInfo={item} key={index} price={this.props.price}/>
                     })}
                 </div>
                 <div styleName="mainBottom">
@@ -28,4 +29,13 @@ class Cinema extends React.Component<any, any>{
         )
     }
 }
-export default CSSModules(Cinema, style, { allowMultiple: true });
+
+const mapStateToProps = (state:any) => {
+    return {
+        price: state.stores
+    }
+  }
+
+export default connect(
+    mapStateToProps
+  )(CSSModules(Cinema, style, { allowMultiple: true }));

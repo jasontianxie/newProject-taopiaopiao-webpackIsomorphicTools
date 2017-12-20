@@ -6,6 +6,8 @@ import * as style from './index.scss';
 export interface MovieOnlineProps {
     data:data
     key?:any
+    pic:any
+    changeStore:any
 }
 export interface data {
     moviePic:any;
@@ -22,11 +24,11 @@ class MovieOnline extends React.Component<MovieOnlineProps, any>{
         }
     }
     render(){
-        const {data} = this.props;
+        const {data,pic,changeStore} = this.props;
         return(
             <div styleName="movieOnlineList">
                 <div styleName="movieInfo">
-                    <div styleName="moviePic"><img src={data.moviePic} alt="no pic"/></div>
+                    <div styleName="moviePic"><img src={pic} alt="no pic"/></div>
                     <div styleName="movieDetail">
                         <span styleName="movieName">{data.movieName}</span>
                         <span styleName="movieStars">{data.stars}</span>
@@ -34,7 +36,7 @@ class MovieOnline extends React.Component<MovieOnlineProps, any>{
                         <span styleName="movieLeaderRole">{data.movieLeaderRole}</span>
                     </div>
                 </div>
-                <button styleName="buttonBuy">购买</button>
+                <button styleName="buttonBuy" onClick={changeStore}>购买</button>
             </div>
         ) ;
     }

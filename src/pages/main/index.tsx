@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 // import React from 'react';
 // const React = require('react');
@@ -10,49 +11,58 @@ import * as CSSModules from 'react-css-modules';
 import * as style from './index.scss';
 import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
+import {getMainData} from 'src/reduxAction/mainAction';
 
-const movieOnlineData = [
+const movieOnlineDataPic = [
     {
         moviePic: require('src/images/TB1.dS0bCYH8KJjSspdXXcRgVXa_.jpg_160x160Q75.jpg'),
-        movieName: 'test movie',
-        stars: '9',
-        movieDirector: 'jack chen',
-        movieLeaderRole: 'green'
+        // movieName: 'test movie',
+        // stars: '9',
+        // movieDirector: 'jack chen',
+        // movieLeaderRole: 'green'
     },
     {
         moviePic: require('src/images/TB1dEI5aAfb_uJkSmLyXXcxoXXa_.jpg_160x160Q75.jpg'),
-        movieName: 'test movie',
-        stars: '9',
-        movieDirector: 'jack chen',
-        movieLeaderRole: 'green'
+        // movieName: 'test movie',
+        // stars: '9',
+        // movieDirector: 'jack chen',
+        // movieLeaderRole: 'green'
     },
     {
         moviePic: require('src/images/TB1FQ7tbAfb_uJkSmLyXXcxoXXa_.jpg_160x160.jpg'),
-        movieName: 'test movie',
-        stars: '9',
-        movieDirector: 'jack chen',
-        movieLeaderRole: 'green'
+        // movieName: 'test movie',
+        // stars: '9',
+        // movieDirector: 'jack chen',
+        // movieLeaderRole: 'green'
     },
     {
         moviePic: require('src/images/TB1IlYAerYI8KJjy0FaXXbAiVXa_.jpg_160x160Q75.jpg'),
-        movieName: 'test movie',
-        stars: '9',
-        movieDirector: 'jack chen',
-        movieLeaderRole: 'green'
+        // movieName: 'test movie',
+        // stars: '9',
+        // movieDirector: 'jack chen',
+        // movieLeaderRole: 'green'
     },
     {
         moviePic: require('src/images/TB1lgE8ennI8KJjSszbXXb4KFXa_.jpg_160x160.jpg'),
-        movieName: 'test movie',
-        stars: '9',
-        movieDirector: 'jack chen',
-        movieLeaderRole: 'green'
+        // movieName: 'test movie',
+        // stars: '9',
+        // movieDirector: 'jack chen',
+        // movieLeaderRole: 'green'
     },
 
 ]
 
 const TabPane = Tabs.tabPane;
 class App extends React.Component<any, any>{
+    componentWillMount(){
+        this.props.fetchData();
+    }
     render() {
+        // console.log(this.props.main);
+        const {movieOnlineData,changeStore} = this.props;
+        console.log(movieOnlineData);
+        console.log(movieOnlineData.get('isFetching'));
+        console.log(movieOnlineData.get('data').toJS());
         return (
             <div styleName="mainWrap">
                 <div styleName="mainContent">
@@ -66,7 +76,7 @@ class App extends React.Component<any, any>{
                                 <div><img src={require('src/images/5.jpg')} alt="no pic" /></div>
                             </Carousel>
                             {
-                                movieOnlineData.map((item, index, array) => <MovieOnline key={index} data={item} />)
+                                movieOnlineData.get('isFetching')?null:movieOnlineData.get('data').toJS().map((item:any, index:number, array:any) => <MovieOnline key={index} data={item} pic={movieOnlineDataPic[index].moviePic} changeStore={changeStore}/>)
                             }
                         </TabPane>
                         <TabPane title="即将上映">
@@ -86,7 +96,7 @@ class App extends React.Component<any, any>{
 
 const mapStateToProps = (state:any) => {
     return {
-      todos: state.main
+        movieOnlineData: state.get('main')
     }
   }
 
@@ -94,10 +104,11 @@ const mapStateToProps = (state:any) => {
     dispatch:any
   ) => {
     return {
-      onClick: () => {
-        dispatch({
-          type: 'GET_init_data'
-        });
+      fetchData: () => {
+        dispatch(getMainData());
+      },
+      changeStore:()=>{
+          dispatch({type:"GET_MAIN_CHANGE_STORE"})
       }
     };
   }

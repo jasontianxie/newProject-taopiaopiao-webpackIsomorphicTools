@@ -8,10 +8,11 @@ import 'src/commonStyle/normalize.library.scss';
 import { Router, hashHistory } from 'react-router';
 import routes from '../routes/index.js';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import rootReducer from 'src/reduxReducer/combineReducer.js';
+import { createStore,applyMiddleware  } from 'redux';
+import rootReducer from '../src/reduxReducer/combineReducer';
+import thunk from 'redux-thunk';
 
-let store = createStore(rootReducer);
+let store = createStore(rootReducer,applyMiddleware(thunk));
 
 ReactDom.render(
     <Provider store={store}>
