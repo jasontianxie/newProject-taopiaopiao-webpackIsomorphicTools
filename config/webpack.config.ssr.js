@@ -4,6 +4,12 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const IsomorphicPlugin = require('webpack-isomorphic/plugin');
+const webpackIsomorphic = require('webpack-isomorphic');
+
+const isomorphicPlugin = new IsomorphicPlugin({
+	extensions: ['jpg', 'png', 'gif', 'css','scss']
+});
 
 const extractSass = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
@@ -11,7 +17,107 @@ const extractSass = new ExtractTextPlugin({
   allChunks: true
 });
 
-module.exports = {
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin')
+
+var webpackIsomorphicToolsPlugin = 
+  // webpack-isomorphic-tools settings reside in a separate .js file 
+  // (because they will be used in the web server code too).
+  new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tool-configuration'))
+  // also enter development mode since it's a development webpack configuration
+  // (see below for explanation)
+  .development()
+
+module.exports = [{
+  context: path.resolve(__dirname ,'../public'),
+  target: 'node',
+  entry: 
+    path.resolve(__dirname, '../entry/serverRender.tsx')
+  ,
+  output: {
+    path: path.resolve(__dirname, '../public'),
+    filename: 'bundleSSR.js',
+    // filename:'[name].js',
+    publicPath: '/',
+    libraryTarget:"commonjs",
+    library:'page'
+  },
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: [".ts", ".tsx", ".js", ".json","scss"],
+    alias:{
+      src:path.resolve(__dirname, '../src')
+    }
+  },
+  module: {
+    rules: [
+      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      {
+        test:/\.css$/,use:[
+          {loader:"style-loader"},
+          {
+                loader: "css-loader",
+              }
+        ]
+      },
+      {
+        test:/\.library.scss$/,
+        use:[
+          {loader:"style-loader"},
+          {loader: "css-loader"},
+          {
+            loader:"postcss-loader"
+          },
+          {
+            loader: "sass-loader"
+          }
+        ]
+      },
+      {
+        test: /\.scss$/,
+        exclude:/\.library.scss$/,
+        use:[
+          {loader:"style-loader",options:{hmr:true}},
+          {
+                loader: "css-loader",
+                options:{
+                  modules:true,
+                  importLoaders:2,
+                  localIdentName:'[name]__[local]___[hash:base64:5]'
+                }
+              },
+              {
+                loader:"postcss-loader"
+              },
+              {
+                loader: "sass-loader"
+              }
+        ]
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use:[{loader:'url-loader',options:{limit:40000}}]
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader'
+      }
+    ]
+  },
+  devtool: 'eval-source-map',
+  plugins: [
+    // extractSass,
+    new CleanWebpackPlugin(['public'], { root: path.resolve(__dirname, '..') }),
+    new webpack.HotModuleReplacementPlugin(),
+    // Use NoErrorsPlugin for webpack 1.x
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.NormalModuleReplacementPlugin(/\.library.scss$/, 'node-noop'),
+    new webpack.IgnorePlugin(/\.(css|scss)$/),
+    isomorphicPlugin
+  ]
+},
+{
+  context: path.resolve(__dirname ,'../public'),
   entry: {
     app: ['eventsource-polyfill', path.resolve(__dirname, '../entry/index.tsx'), 'webpack-hot-middleware/client?reload=true'],
     vendor: ['eventsource-polyfill', path.resolve(__dirname, '../entry/vendor.js'), 'webpack-hot-middleware/client?reload=true'],
@@ -126,27 +232,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     // Use NoErrorsPlugin for webpack 1.x
     new webpack.NoEmitOnErrorsPlugin(),
-    new htmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'template.html'
-    }),
-    new BrowserSyncPlugin(
-      // BrowserSync options 
-      {
-        // browse to http://localhost:3000/ during development 
-        host: 'http://127.0.0.1',
-        port: 3100,
-        // proxy the Webpack Dev Server endpoint 
-        // (which should be serving on http://localhost:3100/) 
-        // through BrowserSync 
-        proxy: 'http://127.0.0.1:3003/'
-      },
-      // plugin options 
-      {
-        // prevent BrowserSync from reloading the page 
-        // and let Webpack Dev Server take care of this 
-        reload: false
-      }
-    )
+    isomorphicPlugin
+    
   ]
 }
+]

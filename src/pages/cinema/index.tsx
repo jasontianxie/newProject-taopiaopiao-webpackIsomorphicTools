@@ -22,8 +22,8 @@ class Cinema extends React.Component<any, any>{
                     })}
                 </div>
                 <div styleName="mainBottom">
+                    <div>主页</div>
                     <div onClick={() => hashHistory.push('/')}>主页</div>
-                    <div style={{ color: 'red' }}>影院</div>
                 </div>
             </div>
         )
