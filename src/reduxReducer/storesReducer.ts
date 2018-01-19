@@ -8,4 +8,5 @@ const reducer:any = (state = defaultState, action:any) => {
         return state;
     }
   };
-  export default reducer;
+  // export default reducer;
+  module.exports = reducer;

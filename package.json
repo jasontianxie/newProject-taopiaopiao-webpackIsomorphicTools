@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./scripts/dev.js",
+    "iso-dev": "node ./scripts/iso-dev.js",
     "pack": "node ./scripts/pack.js",
     "ssr": "node ./scripts/ssr.js",
+    "isomorphic-main": "node ./scripts/isomorphic-main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -38,6 +40,13 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
+    "babel-plugin-add-module-exports": "^0.1.2",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-react-display-name": "^6.3.13",
+    "babel-plugin-transform-runtime": "^6.3.13",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.3.13",
+    "babel-runtime": "^6.3.19",
     "browser-sync": "^2.18.13",
     "browser-sync-webpack-plugin": "^1.2.0",
     "classnames": "^2.2.5",

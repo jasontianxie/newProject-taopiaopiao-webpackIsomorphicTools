@@ -14,12 +14,12 @@ import thunk from 'redux-thunk';
 
 let store = createStore(rootReducer,applyMiddleware(thunk));
 const history = createMemoryHistory();
-// ReactDom.render(
-//     <Provider store={store}>
-//         <Router history={hashHistory} routes={routes}/>
-//     </Provider>
-//     ,document.getElementById('root')
-// )
-match({ history, routes }, (error, redirectLocation, renderProps) => {
-    ReactDom.render(<Router {...renderProps} />, document.getElementById('root'))
-  })
+ReactDom.render(
+    <Provider store={store}>
+        <Router history={hashHistory} routes={routes}/>
+    </Provider>
+    ,document.getElementById('root')
+)
+// match({ history, routes }, (error, redirectLocation, renderProps) => {
+//     ReactDom.render(<Router {...renderProps} />, document.getElementById('root'))
+//   })
