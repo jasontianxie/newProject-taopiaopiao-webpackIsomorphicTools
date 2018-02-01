@@ -1,8 +1,8 @@
 import * as React from 'react';
-import * as CSSModules from 'react-css-modules';
+const CSSModules = require('react-css-modules');
 import * as style from './index.scss';
 // const style = require('./index.scss');
-import StoreList from 'src/components/storeList/index';
+import StoreList from '../../components/storeList/index';
 import { hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 

@@ -6,7 +6,7 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
-var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tool-configuration'));
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tool-configuration')).development();
 
 const extractSass = new ExtractTextPlugin({
   filename: "[name].[contenthash].css",
@@ -54,7 +54,8 @@ module.exports = {
       { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
-        test:/\.css$/,use:[
+        test:webpackIsomorphicToolsPlugin.regularExpression('css'),
+        use:[
           {loader:"style-loader"},
           {
                 loader: "css-loader",
@@ -114,11 +115,11 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpg)$/,
+        test:webpackIsomorphicToolsPlugin.regularExpression('images'),
         use:[{loader:'url-loader',options:{limit:40000}}]
       },
       {
-        test: /\.svg$/,
+        test: webpackIsomorphicToolsPlugin.regularExpression('svg'),
         loader: 'svg-sprite-loader'
       }
     ]
@@ -151,6 +152,6 @@ module.exports = {
         reload: false
       }
     ),
-    webpackIsomorphicToolsPlugin.development()
+    webpackIsomorphicToolsPlugin
   ]
 }

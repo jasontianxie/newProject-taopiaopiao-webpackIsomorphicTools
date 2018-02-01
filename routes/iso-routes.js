@@ -1,11 +1,22 @@
-import Main from '../src/pages/main/index';
-import Cinema from '../src/pages/cinema/index';
-const routes = [{
+const Main = require('../src/pages/main/index.tsx');
+const Cinema = require('../src/pages/cinema/index.tsx');
+const Wrap = require('../src/pages/wrap.tsx');
+const routes = {
     path: '/',
-    component: Main,
-},{
-    path: '/cinema',
-    component: Cinema,
-}];
+    component: Wrap,
+    indexRoute: { component: Main },
+    childRoutes:[
+        {
+            path: 'main',
+            component: Main,
+        },{
+            path: 'cinema',
+            component: Cinema,
+        }
+    ]
+}
+
+
+
 
 export default routes;

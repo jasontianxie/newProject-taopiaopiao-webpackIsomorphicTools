@@ -11,8 +11,9 @@ const rootReducer = require('../src/reduxReducer/combineReducer.ts');
 const thunk = require('redux-thunk').default;
 const app = new express();
 const store = createStore(rootReducer, applyMiddleware(thunk));
+const Main = require('../src/pages/main/index.tsx');
 
-console.log(require('../routes/index.js'));
+// console.log(require('../routes/index.js'));
 app.use(render);
 app.listen('3004',(err)=>{
     console.log(err+'server is success');
@@ -20,8 +21,11 @@ app.listen('3004',(err)=>{
 function render(req, res) {
     webpackIsomorphicTools.refresh();
     match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+        console.log('the renderProps is :');
         console.log(renderProps);
+        console.log('the routes is :');
         console.log(routes);
+        console.log('the req.url is :');
         console.log(req.url);
         if (error) {
             res.status(500).send(error.message)
@@ -45,7 +49,7 @@ function template(renderProps) {
             <title>Document</title>
         </head>
         <body>
-            <div id="root">${renderToString(<Provider store={store}><RouterContext {...renderProps} /></Provider>)}</div>
+            <div id="root">${renderToString(<RouterContext {...renderProps} />)}</div>
             <script type="text/javascript">
                 window.onresize = function(){
                 document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
