@@ -49,7 +49,7 @@ function template(renderProps) {
             <title>Document</title>
         </head>
         <body>
-            <div id="root">${renderToString(<RouterContext {...renderProps} />)}</div>
+            <div id="root">${renderToString(<Provider store={store}><RouterContext {...renderProps} /></Provider>)}</div>
             <script type="text/javascript">
                 window.onresize = function(){
                 document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
